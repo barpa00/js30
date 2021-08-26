@@ -96,6 +96,31 @@
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll(".inbox input[type='checkbox']")
+
+  // 可以取到最後一個被點擊的 input 
+  let lastChecked; 
+
+  function handleCheck (e){
+    let isBetween = false
+    // 判斷是否同時點擊 shift 鍵及 input checked 事件
+    if ( e.shiftKey && this.checked ){
+      // console.log("this",this)
+      // console.log("last",lastChecked)
+      // console.log("got it")
+      checkboxes.forEach( box => {
+        if( box === this || box === lastChecked ){
+          isBetween = !isBetween
+        }
+        if(isBetween){
+          box.checked = true
+        }
+      })
+    }
+    lastChecked = this
+  }
+
+  checkboxes.forEach( box => box.addEventListener("click", handleCheck))
 </script>
 </body>
 </html>
