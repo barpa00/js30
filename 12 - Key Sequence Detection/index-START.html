@@ -7,6 +7,23 @@
 </head>
 <body>
 <script>
+
+  const secretCode = "hello"
+  const pressed = []
+  window.addEventListener( "keyup", (e) => {
+    pressed.push(e.key)
+    // 只抓後面五個 slice( -6 , 1 )
+    // git stash 
+    console.log("first",pressed)
+    // 陣列有 六個 
+    // splice() 取陣列最後五個 不要跟 slice() 搞混
+    console.log(-secretCode.length-1)
+    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+    if(pressed.join('').includes(secretCode)){
+      console.log("get it :)")
+    }
+    console.log("last",pressed)
+  })
 </script>
 </body>
 </html>
